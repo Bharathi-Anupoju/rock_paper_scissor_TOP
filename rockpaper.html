@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #hell{
+            text-align: center;
+        }
+        #hell:hover{
+            transform: scaleX(5);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="hell"></h1>
+    
+    <script>
+        var rounds=prompt("enter rounds:");
+        var computer_turns=[];
+        var human_turns=[];
+        for(var i=0;i<rounds;i++){
+            var computer=Math.floor(Math.random()*3)+1;
+            var human
+
+            while (true) {
+                human = parseInt(prompt("Enter a number:"));
+                if (human >= 1 && human <= 3) {
+                    break;
+                } else {
+                    console.log("Enter number within the range of 1 to 3.");
+                }
+            }
+            computer_turns.push(computer)
+            human_turns.push(human)
+
+        }
+        console.log("com array:",computer_turns)
+        console.log("human array:",human_turns);
+
+
+        var com_count=0
+        var human_count=0
+        for(var i=0;i<computer_turns.length;i++){
+            for(var j=0;j<human_turns.length;j++){
+                if(i==j){
+                    switch (computer_turns[i]) {
+                        case 1:
+                            switch (human_turns[j]) {
+                                case 2:
+                                    com_count -= 1;
+                                    break;
+                                case 3:
+                                    com_count += 1;
+                                    break;
+                            }
+                        break;
+                        case 2:
+                            switch (human_turns[j]) {
+                                case 1:
+                                    com_count += 1;
+                                    break;
+                                case 3:
+                                    com_count -= 1;
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch (human_turns[j]) {
+                                case 1:
+                                    com_count -= 1;
+                                    break;
+                                case 2:
+                                    com_count += 1;
+                                    break;
+                            }
+                            break;
+                         }
+                        }
+            }
+        }
+        if(com_count>human_count){
+            document.getElementById("hell").innerHTML="Computer won...! "
+        }else if(com_count==human_count){
+            document.getElementById("hell").innerHTML="TIE...!"
+        }else{
+            document.getElementById("hell").innerHTML="YOU WON...yay...!"
+        }
+        
+
+
+    </script>
+</body>
+</html>
